@@ -1,0 +1,46 @@
+app: shake-infrastructure
+service: shake-infrastructure
+
+frameworkVersion: "3.22.0"
+
+provider:
+  name: aws
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  lambdaHashingVersion: 20201221
+
+package:
+  individually: true
+
+custom:
+  config:
+    dev:
+      account_id: 296370543127
+      environment: development
+    stg:
+      account_id: 396370543127
+      environment: staging
+    prd:
+      account_id: 496370543127
+      environment: release
+
+functions:
+  api:
+    handler: Serverless.Api
+    memorySize: 256
+    timeout: 30
+    runtime: dotnet6
+    architecture: arm64
+    description: 'Dotnet 6 REST API.'
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${self:custom.config.${self:provider.stage}.environment}
+    package:
+      artifact: api-artifact.zip
+      individually: true
+    events:
+      - httpApi:
+          path: '/{proxy+}'
+          method: '*'
+
+plugins:
+  - serverless-offline

@@ -1,0 +1,42 @@
+name: shake-infrastructure-prd
+
+on:
+  push:
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Action checkout
+        uses: actions/checkout@v2
+
+      - name: Build API
+        run: |
+          dotnet tool install --global Amazon.Lambda.Tools --version 5.4.5
+          dotnet restore --disable-parallel --verbosity minimal $GITHUB_WORKSPACE/functions/api/Shake.Api.sln
+
+          export PATH="$PATH:/home/runner/.dotnet/tools"
+          dotnet build $GITHUB_WORKSPACE/functions/api/Shake.Api.sln --no-restore --configuration Release --verbosity minimal
+          cd $GITHUB_WORKSPACE/functions/api && dotnet publish -c Release --self-contained false -r linux-arm64 -o publish
+          cd $GITHUB_WORKSPACE/functions/api/publish && zip -r $GITHUB_WORKSPACE/api-artifact.zip *
+
+      - name: Install dependencies
+        run: npm install
+      - name: Serverless deployment
+        uses: serverless/github-action@v3
+        with:
+          args: deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

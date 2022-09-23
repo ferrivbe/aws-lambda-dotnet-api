@@ -1,0 +1,23 @@
+{
+    "name": "aws-lambda-dotnet-api",
+    "version": "1.0.0",
+    "description": "Infrastructure for dotnet 6 serverless AWS Lambda REST API.",
+    "main": "index.js",
+    "scripts": {
+        "offline": "serverless offline start --allowCache"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ferrivbe/aws-lambda-dotnet-api.git"
+    },
+    "author": "Fernando Rivera",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ferrivbe/aws-lambda-dotnet-api/issues"
+    },
+    "homepage": "https://github.com/ferrivbe/aws-lambda-dotnet-api#readme",
+    "dependencies": {
+        "serverless": "^3.22.0",
+        "serverless-offline": "^8.8.1"
+    }
+}
