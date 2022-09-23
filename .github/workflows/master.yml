@@ -23,10 +23,10 @@ jobs:
 
       - name: Build API
         run: |
-          dotnet restore --disable-parallel --verbosity minimal $GITHUB_WORKSPACE/functions/api/Shake.Api.sln
+          dotnet restore --disable-parallel --verbosity minimal $GITHUB_WORKSPACE/functions/api/Serverless.Api.sln
 
           export PATH="$PATH:/home/runner/.dotnet/tools"
-          dotnet build $GITHUB_WORKSPACE/functions/api/Shake.Api.sln --no-restore --configuration Release --verbosity minimal
+          dotnet build $GITHUB_WORKSPACE/functions/api/Serverless.Api.sln --no-restore --configuration Release --verbosity minimal
           cd $GITHUB_WORKSPACE/functions/api && dotnet publish -c Release --self-contained false -r linux-arm64 -o publish
           cd $GITHUB_WORKSPACE/functions/api/publish && zip -r $GITHUB_WORKSPACE/api-artifact.zip *
 
