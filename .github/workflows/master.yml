@@ -1,4 +1,4 @@
-name: shake-infrastructure-prd
+name: serverless-api
 
 on:
   push:
