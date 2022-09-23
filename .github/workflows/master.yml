@@ -23,7 +23,6 @@ jobs:
 
       - name: Build API
         run: |
-          dotnet tool install --global Amazon.Lambda.Tools --version 5.4.5
           dotnet restore --disable-parallel --verbosity minimal $GITHUB_WORKSPACE/functions/api/Shake.Api.sln
 
           export PATH="$PATH:/home/runner/.dotnet/tools"
