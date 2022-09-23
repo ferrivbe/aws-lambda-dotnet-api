@@ -31,7 +31,7 @@ Starting Offline at stage dev (us-east-1)
 
 Offline [http for lambda] listening on http://localhost:3002
 Function names exposed for local invocation by aws-sdk:
-           * api: shake-infrastructure-dev-api
+           * api: serverless-infrastructure-dev-api
 
    ┌───────────────────────────────────────────────────────────────────────┐
    │                                                                       │

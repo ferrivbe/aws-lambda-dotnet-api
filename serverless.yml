@@ -1,5 +1,5 @@
-app: shake-infrastructure
-service: shake-infrastructure
+app: serverless-infrastructure
+service: serverless-infrastructure
 
 frameworkVersion: "3.22.0"
 
