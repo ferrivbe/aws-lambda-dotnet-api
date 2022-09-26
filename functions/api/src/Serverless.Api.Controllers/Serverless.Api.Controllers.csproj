@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Serverless.Api.Common\Serverless.Api.Common.csproj" />
+    <ProjectReference Include="..\Serverless.Api.Common\Serverless.Api.Common.csproj" />
   </ItemGroup>
 
 </Project>

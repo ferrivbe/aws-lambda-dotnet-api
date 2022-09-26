@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serverless.Api.Controllers"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "application", "application", "{75434B84-08E2-432F-A108-0E5177C8D713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serverless.Api.Common", "Serverless.Api.Common\Serverless.Api.Common.csproj", "{E4149CF7-2906-4D99-BA40-DF39BF52FD72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serverless.Api.Common", "src\Serverless.Api.Common\Serverless.Api.Common.csproj", "{E4149CF7-2906-4D99-BA40-DF39BF52FD72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

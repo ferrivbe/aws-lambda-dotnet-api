@@ -19,6 +19,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapGet("/", () => "AWS Lambda");
-
 app.Run();
