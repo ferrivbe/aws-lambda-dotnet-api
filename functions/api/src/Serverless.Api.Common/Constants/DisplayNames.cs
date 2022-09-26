@@ -7,17 +7,17 @@
 namespace Serverless.Api.Common.Constants
 {
     /// <summary>
-    /// Constants of the routes of this service.
+    /// Constants of the fisplay names for this service.
     /// </summary>
     /// <threadsafety>
     /// Any public static (Shared in Visual Basic) members of this type are thread safe. Any instance members are not guaranteed
     /// to be thread safe.
     /// </threadsafety>
-    public static class Routes
+    public static class DisplayNames
     {
         /// <summary>
         /// The health route.
         /// </summary>
-        public const string Health = "/health";
+        public const string ServiceHealth = "service_health";
     }
 }

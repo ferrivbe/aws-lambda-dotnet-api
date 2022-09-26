@@ -7,12 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Serverless.Api.Common\Serverless.Api.Common.csproj" />
-    <ProjectReference Include="..\Serverless.Api.Models\Serverless.Api.Models.csproj" />
   </ItemGroup>
 
 </Project>

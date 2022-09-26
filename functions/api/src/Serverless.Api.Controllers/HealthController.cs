@@ -1,11 +1,12 @@
 ﻿// ***********************************************************************
-// <copyright file="HealthController.cs" company="GBM">
+// <copyright file="HealthController.cs">
 //     Serverless example
 // </copyright>
 // ***********************************************************************
 
 using Serverless.Api.Common.Constants;
 using Microsoft.AspNetCore.Mvc;
+using Serverless.Api.Models.Models;
 
 namespace Serverless.Api.Controllers
 {
@@ -20,12 +21,23 @@ namespace Serverless.Api.Controllers
         /// Adds the specified address.
         /// </summary>
         /// <returns>The service health check.</returns>
+        /// <returns>A newly created TodoItem</returns>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET /health
+        ///
+        /// </remarks>
         /// <response code="200">The service health check.</response>
-        /// <response code="500">An unhandled error in the server.</response>
-        [HttpGet(Name = "GetHealth")]
+        [HttpGet]
         public async Task<IActionResult> GetHealthAsync()
         {
-            var result = await Task.FromResult("healthy").ConfigureAwait(false);
+            var response = new HealthDto
+            {
+                ServiceHealth = "healthy"
+            };
+
+            var result = await Task.FromResult(response).ConfigureAwait(false);
             return this.Ok(result);
 
         }
