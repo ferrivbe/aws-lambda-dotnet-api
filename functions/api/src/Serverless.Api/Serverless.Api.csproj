@@ -11,4 +11,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Serverless.Api.Controllers\Serverless.Api.Controllers.csproj" />
+  </ItemGroup>
+
 </Project>
