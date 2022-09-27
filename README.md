@@ -1,6 +1,6 @@
 ![workflow](https://github.com/ferrivbe/aws-lambda-dotnet-api/actions/workflows/master.yml/badge.svg)
 
-# Serverless Express service
+# Serverless .NET 6 AWS Lambda service
 
 This repository contains the source code of a serverless dotnet 6 service.
 
