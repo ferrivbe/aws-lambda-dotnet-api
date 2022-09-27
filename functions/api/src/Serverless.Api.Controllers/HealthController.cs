@@ -11,7 +11,7 @@ using Serverless.Api.Models.Models;
 namespace Serverless.Api.Controllers
 {
     /// <summary>
-    /// HAndles all requests for service health
+    /// Handles all requests for service health
     /// </summary>
     [ApiController]
     [Route(Routes.Health)]
