@@ -21,25 +21,18 @@ namespace Serverless.Api.Controllers
         /// Adds the specified address.
         /// </summary>
         /// <returns>The service health check.</returns>
-        /// <returns>A newly created TodoItem</returns>
-        /// <remarks>
-        /// Sample request:
-        ///
-        ///     GET /health
-        ///
-        /// </remarks>
         /// <response code="200">The service health check.</response>
+        /// <response code="500">The service internal error.</response>
         [HttpGet]
         public async Task<IActionResult> GetHealthAsync()
         {
             var response = new HealthDto
             {
-                ServiceHealth = "healthy"
+                ServiceHealth = Responses.HealthyService,
             };
 
             var result = await Task.FromResult(response).ConfigureAwait(false);
             return this.Ok(result);
-
         }
     }
 }

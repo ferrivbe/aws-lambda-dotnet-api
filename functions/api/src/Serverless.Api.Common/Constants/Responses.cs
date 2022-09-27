@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// <copyright file="Routes.cs">
+// <copyright file="Responses.cs">
 //     Serverless example
 // </copyright>
 // ***********************************************************************
@@ -7,13 +7,13 @@
 namespace Serverless.Api.Common.Constants
 {
     /// <summary>
-    /// Constants of the routes of this service.
-    /// </summary>
-    public static class Routes
+    /// Constants of the responses for this service.
+    /// </summary>  
+    public static class Responses
     {
         /// <summary>
-        /// The health route.
+        /// The health response.
         /// </summary>
-        public const string Health = "/health";
+        public const string HealthyService = "healthy";
     }
 }
