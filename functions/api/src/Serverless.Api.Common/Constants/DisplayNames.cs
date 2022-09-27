@@ -15,5 +15,10 @@ namespace Serverless.Api.Common.Constants
         /// The service health parameter.
         /// </summary>
         public const string ServiceHealth = "service_health";
+
+        /// <summary>
+        /// The timestamp parameter.
+        /// </summary>
+        public const string Timestamp = "timestamp";
     }
 }

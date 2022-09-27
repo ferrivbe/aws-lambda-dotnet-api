@@ -29,6 +29,7 @@ namespace Serverless.Api.Controllers
             var response = new HealthDto
             {
                 ServiceHealth = Responses.HealthyService,
+                Timestamp = DateTime.Now,
             };
 
             var result = await Task.FromResult(response).ConfigureAwait(false);

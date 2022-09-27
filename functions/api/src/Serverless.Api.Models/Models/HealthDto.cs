@@ -20,6 +20,13 @@ namespace Serverless.Api.Models.Models
         /// </summary>
         [DisplayName(DisplayNames.ServiceHealth)]
         [JsonPropertyName(DisplayNames.ServiceHealth)]
-        public string ServiceHealth { get; set; }
+        public string? ServiceHealth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the timestamp.
+        /// </summary>
+        [DisplayName(DisplayNames.Timestamp)]
+        [JsonPropertyName(DisplayNames.Timestamp)]
+        public DateTime? Timestamp { get; set; }
     }
 }
