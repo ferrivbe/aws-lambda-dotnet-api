@@ -7,6 +7,8 @@
 using Serverless.Api.Common.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Serverless.Api.Models.Models;
+using Microsoft.AspNetCore.Http;
+using System.Net;
 
 namespace Serverless.Api.Controllers
 {
@@ -18,12 +20,16 @@ namespace Serverless.Api.Controllers
     public class HealthController : ControllerBase
     {
         /// <summary>
-        /// Adds the specified address.
+        /// Gets the current service health with a timestamp.
         /// </summary>
         /// <returns>The service health check.</returns>
         /// <response code="200">The service health check.</response>
         /// <response code="500">The service internal error.</response>
         [HttpGet]
+        [Consumes(MimeTypes.ApplicationJson)]
+        [Produces(MimeTypes.ApplicationJson)]
+        [ProducesResponseType(typeof(HealthDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetHealthAsync()
         {
             var response = new HealthDto

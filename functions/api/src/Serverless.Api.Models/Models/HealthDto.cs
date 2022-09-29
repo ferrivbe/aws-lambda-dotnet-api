@@ -18,6 +18,7 @@ namespace Serverless.Api.Models.Models
         /// <summary>
         /// Gets or sets the service health.
         /// </summary>
+        /// <example>healthy</example>
         [DisplayName(DisplayNames.ServiceHealth)]
         [JsonPropertyName(DisplayNames.ServiceHealth)]
         public string? ServiceHealth { get; set; }
