@@ -10,4 +10,10 @@
     <ProjectReference Include="..\Serverless.Api.Common\Serverless.Api.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Models\Error\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Error\" />
+  </ItemGroup>
 </Project>
