@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
+using Serverless.Api.Middleware.HttpLogger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,7 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
-app.UseHttpLogging();
+app.UseRequestResponseLogging();
 
 if (app.Environment.IsDevelopment())
 {

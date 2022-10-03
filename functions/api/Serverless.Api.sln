@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serverless.Api.Models", "sr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{45212688-ADFA-4DE0-9209-E812D6F28D8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serverless.Api.Middleware", "src\Serverless.Api.Middleware\Serverless.Api.Middleware.csproj", "{A868CE6C-BB6D-431D-AB94-0A19DD3F51B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{C1A3A97B-DE03-4AA5-87C1-6F2F4C2ECF19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1A3A97B-DE03-4AA5-87C1-6F2F4C2ECF19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1A3A97B-DE03-4AA5-87C1-6F2F4C2ECF19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A868CE6C-BB6D-431D-AB94-0A19DD3F51B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A868CE6C-BB6D-431D-AB94-0A19DD3F51B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A868CE6C-BB6D-431D-AB94-0A19DD3F51B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A868CE6C-BB6D-431D-AB94-0A19DD3F51B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

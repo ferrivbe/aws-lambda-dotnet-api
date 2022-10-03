@@ -16,6 +16,9 @@
     <ProjectReference Include="..\Serverless.Api.Models\Serverless.Api.Models.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\Serverless.Api.Middleware\Serverless.Api.Middleware.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>
