@@ -14,12 +14,13 @@ namespace Serverless.Api.Models.Models.Logger
     /// <summary>
     /// The service logger detail object.
     /// </summary>
-    public class LogDetail
+    /// <typeparam name="TMessage">The generic message type.</typeparam>
+    public class LogDetail <TMessage>
     {
         /// <summary>
         /// Gets or sets the log severity.
         /// </summary>
-        /// <example><see cref="LogSeverity.Info"/></example>
+        /// <example>info</example>
         [DisplayName(DisplayNames.Severity)]
         [JsonPropertyName(DisplayNames.Severity)]
         public LogSeverity Severity { get; set; }
@@ -81,7 +82,7 @@ namespace Serverless.Api.Models.Models.Logger
         /// <summary>
         /// Gets or sets the client identifier.
         /// </summary>
-        /// <example><see cref="Guid.NewGuid()"/></example>
+        /// <example>clientRequest</example>
         [DisplayName(DisplayNames.Operation)]
         [JsonPropertyName(DisplayNames.Operation)]
         public LogOperation Operation { get; set; }
@@ -92,6 +93,6 @@ namespace Serverless.Api.Models.Models.Logger
         /// <example>A custom log message.</example>
         [DisplayName(DisplayNames.Message)]
         [JsonPropertyName(DisplayNames.Message)]
-        public object? Message { get; set; }
+        public TMessage? Message { get; set; }
     }
 }

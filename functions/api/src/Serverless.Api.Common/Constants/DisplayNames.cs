@@ -126,5 +126,10 @@ namespace Serverless.Api.Common.Constants
         /// The x-forwarded-for header parameter.
         /// </summary>
         public const string XForwardedFor = "xForwardedFor";
+
+        /// <summary>
+        /// The x-forwarded-for header parameter.
+        /// </summary>
+        public const string XForwardedForHeader = "X-Forwarded-For";
     }
 }

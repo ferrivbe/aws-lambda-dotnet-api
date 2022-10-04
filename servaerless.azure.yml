@@ -1,0 +1,44 @@
+app: serverless-infrastructure
+service: serverless-infrastructure
+
+frameworkVersion: "3.22.0"
+
+provider:
+  name: azure
+  region: East US
+  stage: ${opt:stage, 'dev'}
+
+package:
+  individually: true
+
+custom:
+  config:
+    dev:
+      account_id: 296370543127
+      environment: development
+    stg:
+      account_id: 396370543127
+      environment: staging
+    prd:
+      account_id: 496370543127
+      environment: release
+
+functions:
+  api:
+    handler: Serverless.Api
+    memorySize: 256
+    timeout: 30
+    runtime: dotnet6
+    description: 'Dotnet 6 REST API.'
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${self:custom.config.${self:provider.stage}.environment}
+    package:
+      artifact: api-artifact.zip
+      individually: true
+    events:
+      - http: true
+        x-azure-settings:
+           authLevel : anonymous
+
+plugins:
+  - serverless-azure-functions

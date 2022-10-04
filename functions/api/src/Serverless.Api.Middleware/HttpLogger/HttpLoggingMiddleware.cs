@@ -16,6 +16,9 @@ using System.Text.Json.Serialization;
 
 namespace Serverless.Api.Middleware.HttpLogger
 {
+    /// <summary>
+    /// Handles HTTP logging.
+    /// </summary>
     public class HttpLoggingMiddleware
     {
         private readonly ILogger<HttpLoggingMiddleware> logger;
@@ -24,6 +27,12 @@ namespace Serverless.Api.Middleware.HttpLogger
         private readonly ServiceSettings settings;
         private readonly RecyclableMemoryStreamManager recyclableMemoryStreamManager;
 
+        /// <summary>
+        /// Creates a new instrance of <see cref="HttpLoggingMiddleware"/>.
+        /// </summary>
+        /// <param name="requestProcess">The request delegate process.</param>
+        /// <param name="logger">The logger representig an instance of <see cref="ILogger{HttpLoggingMiddleware}"/>.</param>
+        /// <param name="settings">The service settings.</param>
         public HttpLoggingMiddleware(RequestDelegate requestProcess, ILogger<HttpLoggingMiddleware> logger, ServiceSettings settings)
         {
             this.logger = logger;
@@ -40,27 +49,23 @@ namespace Serverless.Api.Middleware.HttpLogger
             };
         }
 
-
+        /// <summary>
+        /// Invoke method.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <returns></returns>
         public async Task Invoke(HttpContext context)
         {
             await LogRequest(context);
             await LogResponse(context);
         }
 
-
-        private async Task LogRequest(HttpContext context)
-        {
-            context.Request.EnableBuffering();
-            await using var requestStream = this.recyclableMemoryStreamManager.GetStream();
-            await context.Request.Body.CopyToAsync(requestStream);
-
-            var logMessage = CreateRequestLog(context, ReadStreamInChunks(requestStream));
-            this.logger.LogInformation(logMessage);
-
-            context.Request.Body.Position = 0;
-        }
-
-        private static object? ReadStreamInChunks(Stream stream)
+        /// <summary>
+        /// Reads the stream.
+        /// </summary>
+        /// <param name="stream">The stream to be read.</param>
+        /// <returns>A <see cref="string?"/> representig the request body.</returns>
+        private static string? ReadStream(Stream stream)
         {
             const int readChunkBufferLength = 4096;
             stream.Seek(0, SeekOrigin.Begin);
@@ -76,9 +81,31 @@ namespace Serverless.Api.Middleware.HttpLogger
 
             var stringItem = textWriter.ToString();
 
-            return stringItem;
+            return stringItem != string.Empty ? stringItem : null;
         }
 
+        /// <summary>
+        /// Logs an incoming HTTP request.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        private async Task LogRequest(HttpContext context)
+        {
+            context.Request.EnableBuffering();
+            await using var requestStream = this.recyclableMemoryStreamManager.GetStream();
+            await context.Request.Body.CopyToAsync(requestStream);
+
+            var logMessage = CreateRequestLog(context, ReadStream(requestStream));
+            this.logger.LogInformation(logMessage);
+
+            context.Request.Body.Position = 0;
+        }
+
+        /// <summary>
+        /// Logs an outcome HTTP response.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         private async Task LogResponse(HttpContext context)
         {
             var originalBodyStream = context.Response.Body;
@@ -91,27 +118,45 @@ namespace Serverless.Api.Middleware.HttpLogger
             var text = await new StreamReader(context.Response.Body).ReadToEndAsync();
             context.Response.Body.Seek(0, SeekOrigin.Begin);
 
-            await requestProcess(context);
-
             var logMessage = CreateResponseLog(context, text);
             this.logger.LogInformation(logMessage);
 
             await responseBody.CopyToAsync(originalBodyStream);
         }
 
-        private string CreateRequestLog(HttpContext context, object? requestBody)
+        /// <summary>
+        /// Creates a request log.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="requestBody">The request body.</param>
+        /// <returns>A <see cref="string"/> representig the request log.</returns>
+        private string CreateRequestLog(HttpContext context, string? requestBody)
             => CreateLog(context, LogSeverity.Info, LogOperation.ClientRequest, requestBody);
 
-        private string CreateResponseLog(HttpContext context, object? responseBody)
+        /// <summary>
+        /// Creates a response log.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="responseBody">The response body.</param>
+        /// <returns>A <see cref="string"/> representig the response log.</returns>
+        private string CreateResponseLog(HttpContext context, string? responseBody)
             => CreateLog(context, LogSeverity.Info, LogOperation.ClientResponse, responseBody);
 
+        /// <summary>
+        /// Creates a generic log.
+        /// </summary>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="severity">The log severity.</param>
+        /// <param name="operation">The log operation.</param>
+        /// <param name="message">The log message</param>
+        /// <returns>A <see cref="string"/> representing a generic log.</returns>
         private string CreateLog(
             HttpContext context,
             LogSeverity severity,
             LogOperation operation,
-            object? message)
+            string? message)
         {
-            var log = new LogDetail
+            var log = new LogDetail<string>
             {
                 Severity = severity,
                 Target = new LogTarget
@@ -124,12 +169,17 @@ namespace Serverless.Api.Middleware.HttpLogger
                 Operation = operation,
                 RequestId = context.Request.Headers[DisplayNames.RequestId],
                 ServiceId = this.settings.ServiceId,
-                XForwardedFor = context.Request.Headers["X-Forwarded-For"],
+                XForwardedFor = context.Request.Headers[DisplayNames.XForwardedForHeader],
                 Timestamp = DateTime.Now,
-                Message = message
+                Message = message,
             };
 
-            return JsonSerializer.Serialize(log, this.serializerOptions);
+            var serializedLog = JsonSerializer.Serialize(log, this.serializerOptions);
+
+            return serializedLog
+                .Replace("\\u0022", "\"")
+                .Replace("\"{", "{")
+                .Replace("}\"", "}");
         }
     }
 }
