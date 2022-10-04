@@ -1,8 +1,14 @@
 using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
+using Serverless.Api.Common.Settings;
 using Serverless.Api.Middleware.HttpLogger;
 
 var builder = WebApplication.CreateBuilder(args);
+
+/// Settings
+var configuration = builder.Configuration;
+var serviceSettings = configuration.GetSection(nameof(ServiceSettings));
+builder.Services.Configure<ServiceSettings>(serviceSettings);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -28,15 +34,6 @@ builder.Services.AddControllers()
                JsonIgnoreCondition.WhenWritingNull;
     });
 
-using ILoggerFactory loggerFactory =
-            LoggerFactory.Create(builder =>
-                builder.AddSimpleConsole(options =>
-                {
-                    options.IncludeScopes = false;
-                    options.SingleLine = true;
-                    options.TimestampFormat = "hh:mm:ss ";
-                }));
-
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -46,8 +43,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseAuthorization();
-app.MapControllers();
+
 app.UseCustomHttpLogging();
+
+app.MapControllers();
 
 app.Run();

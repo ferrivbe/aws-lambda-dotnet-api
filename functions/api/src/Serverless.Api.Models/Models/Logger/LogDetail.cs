@@ -40,12 +40,11 @@ namespace Serverless.Api.Models.Models.Logger
         public string? Environment { get; set; }
 
         /// <summary>
-        /// Gets or sets the host.
+        /// Gets or sets the target.
         /// </summary>
-        /// <example>localhost</example>
-        [DisplayName(DisplayNames.Host)]
-        [JsonPropertyName(DisplayNames.Host)]
-        public string? Host { get; set; }
+        [DisplayName(DisplayNames.Target)]
+        [JsonPropertyName(DisplayNames.Target)]
+        public LogTarget? Target { get; set; }
 
         /// <summary>
         /// Gets or sets the x-forwarded-for header.

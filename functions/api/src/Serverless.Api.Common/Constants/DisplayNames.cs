@@ -73,9 +73,19 @@ namespace Serverless.Api.Common.Constants
         public const string Message = "message";
 
         /// <summary>
+        /// The method parameter.
+        /// </summary>
+        public const string Method = "method";
+
+        /// <summary>
         /// The request identifier.
         /// </summary>
         public const string RequestId = "request_id";
+
+        /// <summary>
+        /// The route parameter.
+        /// </summary>
+        public const string Route = "route";
 
         /// <summary>
         /// The operation parameter.
