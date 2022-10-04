@@ -28,9 +28,16 @@ builder.Services.AddControllers()
                JsonIgnoreCondition.WhenWritingNull;
     });
 
-var app = builder.Build();
+using ILoggerFactory loggerFactory =
+            LoggerFactory.Create(builder =>
+                builder.AddSimpleConsole(options =>
+                {
+                    options.IncludeScopes = false;
+                    options.SingleLine = true;
+                    options.TimestampFormat = "hh:mm:ss ";
+                }));
 
-app.UseRequestResponseLogging();
+var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
@@ -39,9 +46,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
+app.UseCustomHttpLogging();
 
 app.Run();

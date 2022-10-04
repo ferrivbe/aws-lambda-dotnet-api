@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="HttpLogger\" />
+    <ProjectReference Include="..\Serverless.Api.Common\Serverless.Api.Common.csproj" />
+    <ProjectReference Include="..\Serverless.Api.Models\Serverless.Api.Models.csproj" />
   </ItemGroup>
 </Project>
