@@ -15,17 +15,17 @@ namespace Serverless.Api.Common.Constants
         /// <summary>
         /// The client identifier parameter.
         /// </summary>
-        public const string ClientId = "client_id";
+        public const string ClientId = "clientId";
 
         /// <summary>
         /// The client request parameter.
         /// </summary>
-        public const string ClientRequest = "client_request";
+        public const string ClientRequest = "clientRequest";
 
         /// <summary>
         /// The client response parameter.
         /// </summary>
-        public const string ClientResponse = "client_response";
+        public const string ClientResponse = "clientResponse";
 
         /// <summary>
         /// The environment parameter.
@@ -40,17 +40,17 @@ namespace Serverless.Api.Common.Constants
         /// <summary>
         /// The error code parameter.
         /// </summary>
-        public const string ErrorCode = "error_code";
+        public const string ErrorCode = "errorCode";
 
         /// <summary>
         /// The external request parameter.
         /// </summary>
-        public const string ExternalRequest = "external_request";
+        public const string ExternalRequest = "externalRequest";
 
         /// <summary>
         /// The external response parameter.
         /// </summary>
-        public const string ExternalResponse = "external_response";
+        public const string ExternalResponse = "externalResponse";
 
         /// <summary>
         /// The fatal log severity level.
@@ -80,7 +80,7 @@ namespace Serverless.Api.Common.Constants
         /// <summary>
         /// The request identifier.
         /// </summary>
-        public const string RequestId = "request_id";
+        public const string RequestId = "requestId";
 
         /// <summary>
         /// The route parameter.
@@ -95,12 +95,12 @@ namespace Serverless.Api.Common.Constants
         /// <summary>
         /// The service health parameter.
         /// </summary>
-        public const string ServiceHealth = "service_health";
+        public const string ServiceHealth = "serviceHealth";
 
         /// <summary>
         /// The service identifier parameter.
         /// </summary>
-        public const string ServiceId = "service_id";
+        public const string ServiceId = "serviceId";
 
         /// <summary>
         /// The severity parameter.
@@ -125,6 +125,6 @@ namespace Serverless.Api.Common.Constants
         /// <summary>
         /// The x-forwarded-for header parameter.
         /// </summary>
-        public const string XForwardedFor = "x_forwarded_for";
+        public const string XForwardedFor = "xForwardedFor";
     }
 }
