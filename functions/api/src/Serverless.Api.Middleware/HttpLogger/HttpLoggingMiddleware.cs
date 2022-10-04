@@ -37,7 +37,6 @@ namespace Serverless.Api.Middleware.HttpLogger
                 Converters = {
                     new JsonStringEnumConverter( JsonNamingPolicy.CamelCase),
                 },
-                WriteIndented = true,
             };
         }
 
