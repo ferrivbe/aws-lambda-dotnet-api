@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 /// Settings
 var configuration = builder.Configuration;
-var serviceSettings = configuration.GetSection(nameof(ServiceSettings));
-builder.Services.Configure<ServiceSettings>(serviceSettings);
+var serviceSettings = new ServiceSettings();
+configuration.GetSection(nameof(ServiceSettings)).Bind(serviceSettings);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -46,7 +46,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseCustomHttpLogging();
+app.UseCustomHttpLogging(serviceSettings);
 
 app.MapControllers();
 
