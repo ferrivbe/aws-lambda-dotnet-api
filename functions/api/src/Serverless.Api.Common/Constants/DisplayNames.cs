@@ -28,6 +28,11 @@ namespace Serverless.Api.Common.Constants
         public const string ClientResponse = "clientResponse";
 
         /// <summary>
+        /// The detail parameter.
+        /// </summary>
+        public const string Detail = "detail";
+
+        /// <summary>
         /// The environment parameter.
         /// </summary>
         public const string Environment = "environment";
@@ -63,6 +68,11 @@ namespace Serverless.Api.Common.Constants
         public const string Host = "host";
 
         /// <summary>
+        /// The info log severity level.
+        /// </summary>
+        public const string Info = "info";
+
+        /// <summary>
         /// The information log severity level.
         /// </summary>
         public const string Information = "information";
@@ -91,6 +101,11 @@ namespace Serverless.Api.Common.Constants
         /// The operation parameter.
         /// </summary>
         public const string Operation = "operation";
+
+        /// <summary>
+        /// The path parameter.
+        /// </summary>
+        public const string Path = "path";
 
         /// <summary>
         /// The service health parameter.

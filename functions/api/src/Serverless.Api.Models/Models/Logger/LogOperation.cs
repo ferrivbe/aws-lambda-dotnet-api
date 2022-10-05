@@ -41,5 +41,17 @@ namespace Serverless.Api.Models.Models.Logger
         /// </summary>
         [EnumMember(Value = DisplayNames.ExternalResponse)]
         ExternalResponse = 3,
+
+        /// <summary>
+        /// The error log operation type.
+        /// </summary>
+        [EnumMember(Value = DisplayNames.Error)]
+        Error = 4,
+
+        /// <summary>
+        /// The info log operation type.
+        /// </summary>
+        [EnumMember(Value = DisplayNames.Info)]
+        Info = 5,
     }
 }

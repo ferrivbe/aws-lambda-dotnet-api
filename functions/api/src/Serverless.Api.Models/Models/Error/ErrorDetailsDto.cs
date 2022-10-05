@@ -14,8 +14,16 @@ namespace Serverless.Api.Models.Models.Error
     /// <summary>
     /// The service error details transfer object.
     /// </summary>
-    public class ErrorDetailsDto
+    /// <typeparam name="TDetail">The generic detail.</typeparam>
+    public class ErrorDetailsDto <TDetail>
     {
+        /// <summary>
+        /// Gets or sets the service error details.
+        /// </summary>
+        [DisplayName(DisplayNames.Detail)]
+        [JsonPropertyName(DisplayNames.Detail)]
+        public TDetail? Detail { get; set; }
+
         /// <summary>
         /// Gets or sets the service error code.
         /// </summary>
@@ -23,6 +31,14 @@ namespace Serverless.Api.Models.Models.Error
         [DisplayName(DisplayNames.ErrorCode)]
         [JsonPropertyName(DisplayNames.ErrorCode)]
         public string? ErrorCode { get; set; }
+
+        /// <summary>
+        /// Gets or sets the service error message.
+        /// </summary>
+        /// <example>This is an example message.</example>
+        [DisplayName(DisplayNames.Message)]
+        [JsonPropertyName(DisplayNames.Message)]
+        public string? Message { get; set; }
 
         /// <summary>
         /// Gets or sets the service target.

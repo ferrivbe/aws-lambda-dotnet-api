@@ -61,6 +61,30 @@ namespace Serverless.Api.Middleware.HttpLogger
         }
 
         /// <summary>
+        /// Logs an error message.
+        /// </summary>
+        /// <typeparam name="TMessage">The generic message parameter.</typeparam>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="message">The message.</param>
+        public void LogError<TMessage>(HttpContext context, TMessage message)
+        {
+            var logMessage = CreateErrorLog(context, message);
+            this.logger.LogError(logMessage);
+        }
+
+        /// <summary>
+        /// Logs an information message.
+        /// </summary>
+        /// <typeparam name="TMessage">The generic message parameter.</typeparam>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="message">The message.</param>
+        public void LogInfo<TMessage>(HttpContext context, TMessage message)
+        {
+            var logMessage = CreateInfoLog(context, message);
+            this.logger.LogError(logMessage);
+        }
+
+        /// <summary>
         /// Reads the stream.
         /// </summary>
         /// <param name="stream">The stream to be read.</param>
@@ -125,6 +149,26 @@ namespace Serverless.Api.Middleware.HttpLogger
         }
 
         /// <summary>
+        /// Creates an error log.
+        /// </summary>
+        /// <typeparam name="TMessage">The generic message.</typeparam>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="message">The error message.</param>
+        /// <returns>A <see cref="string"/> representig the error log.</returns>
+        private string CreateErrorLog<TMessage>(HttpContext context, TMessage message)
+            => CreateLog(context, LogSeverity.Error, LogOperation.Error, message);
+
+        /// <summary>
+        /// Creates an info log.
+        /// </summary>
+        /// <typeparam name="TMessage">The generic message.</typeparam>
+        /// <param name="context">The HTTP context.</param>
+        /// <param name="message">The info message.</param>
+        /// <returns>A <see cref="string"/> representig the info log.</returns>
+        private string CreateInfoLog<TMessage>(HttpContext context, TMessage message)
+            => CreateLog(context, LogSeverity.Info, LogOperation.Info, message);
+
+        /// <summary>
         /// Creates a request log.
         /// </summary>
         /// <param name="context">The HTTP context.</param>
@@ -150,13 +194,13 @@ namespace Serverless.Api.Middleware.HttpLogger
         /// <param name="operation">The log operation.</param>
         /// <param name="message">The log message</param>
         /// <returns>A <see cref="string"/> representing a generic log.</returns>
-        private string CreateLog(
+        private string CreateLog<TMessage>(
             HttpContext context,
             LogSeverity severity,
             LogOperation operation,
-            string? message)
+            TMessage message)
         {
-            var log = new LogDetail<string>
+            var log = new LogDetail<TMessage>
             {
                 Severity = severity,
                 Target = new LogTarget
