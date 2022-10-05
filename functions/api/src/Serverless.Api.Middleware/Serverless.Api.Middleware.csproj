@@ -6,18 +6,31 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="Microsoft.Extensions.Logging.Abstractions" />
     <None Remove="Microsoft.AspNetCore.Http.Abstractions" />
     <None Remove="Microsoft.IO.RecyclableMemoryStream" />
     <None Remove="HttpLogger\" />
     <None Remove="HttpException\" />
+    <None Remove="Microsoft.CodeAnalysis.NetAnalyzers" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.2.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Serverless.Api.Common\Serverless.Api.Common.csproj" />

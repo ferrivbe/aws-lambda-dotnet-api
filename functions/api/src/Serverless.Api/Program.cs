@@ -50,6 +50,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseCustomHttpLogging(serviceSettings);
+
 app.UseHttpExceptionHendler(serviceSettings);
 
 app.MapControllers();
