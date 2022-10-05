@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
 using Serverless.Api.Common.Settings;
+using Serverless.Api.Middleware.HttpException;
 using Serverless.Api.Middleware.HttpLogger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,6 +50,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseCustomHttpLogging(serviceSettings);
+app.UseHttpExceptionHendler(serviceSettings);
 
 app.MapControllers();
 

@@ -11,6 +11,7 @@
     <None Remove="Microsoft.AspNetCore.Http.Abstractions" />
     <None Remove="Microsoft.IO.RecyclableMemoryStream" />
     <None Remove="HttpLogger\" />
+    <None Remove="HttpException\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
@@ -21,5 +22,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Serverless.Api.Common\Serverless.Api.Common.csproj" />
     <ProjectReference Include="..\Serverless.Api.Models\Serverless.Api.Models.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HttpException\" />
   </ItemGroup>
 </Project>

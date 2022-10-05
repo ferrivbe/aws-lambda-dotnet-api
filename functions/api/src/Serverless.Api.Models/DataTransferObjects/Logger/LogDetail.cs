@@ -9,13 +9,13 @@ using Serverless.Api.Common.Constants;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
-namespace Serverless.Api.Models.Models.Logger
+namespace Serverless.Api.Models.DataTranferObjects.Logger
 {
     /// <summary>
     /// The service logger detail object.
     /// </summary>
     /// <typeparam name="TMessage">The generic message type.</typeparam>
-    public class LogDetail <TMessage>
+    public class LogDetail<TMessage>
     {
         /// <summary>
         /// Gets or sets the log severity.
@@ -30,7 +30,7 @@ namespace Serverless.Api.Models.Models.Logger
         /// </summary>
         [DisplayName(DisplayNames.Timestamp)]
         [JsonPropertyName(DisplayNames.Timestamp)]
-        public DateTime Timestamp {  get; set; }
+        public DateTime Timestamp { get; set; }
 
         /// <summary>
         /// Gets or sets the environment.

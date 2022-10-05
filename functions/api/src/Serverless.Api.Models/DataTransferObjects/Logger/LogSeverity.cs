@@ -8,7 +8,7 @@
 using Serverless.Api.Common.Constants;
 using System.Runtime.Serialization;
 
-namespace Serverless.Api.Models.Models.Logger
+namespace Serverless.Api.Models.DataTranferObjects.Logger
 {
     /// <summary>
     /// Represents all possible values for log severity.

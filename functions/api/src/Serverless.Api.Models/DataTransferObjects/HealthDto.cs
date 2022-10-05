@@ -9,7 +9,7 @@ using Serverless.Api.Common.Constants;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
-namespace Serverless.Api.Models.Models
+namespace Serverless.Api.Models.DataTranferObjects
 {
     /// <summary>
     /// The service health data transfer object.

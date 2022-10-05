@@ -6,9 +6,10 @@
 
 using Serverless.Api.Common.Constants;
 using Microsoft.AspNetCore.Mvc;
-using Serverless.Api.Models.Models;
+using Serverless.Api.Models.DataTranferObjects;
 using Microsoft.AspNetCore.Http;
-using Serverless.Api.Models.Models.Error;
+using Serverless.Api.Models.DataTranferObjects.Error;
+using Serverless.Api.Models.Extensions;
 
 namespace Serverless.Api.Controllers
 {
@@ -29,7 +30,7 @@ namespace Serverless.Api.Controllers
         [Consumes(MimeTypes.ApplicationJson)]
         [Produces(MimeTypes.ApplicationJson)]
         [ProducesResponseType(typeof(HealthDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(HttpErrorDto<>), StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(typeof(HttpErrorDto), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetHealthAsync()
         {
             var response = new HealthDto

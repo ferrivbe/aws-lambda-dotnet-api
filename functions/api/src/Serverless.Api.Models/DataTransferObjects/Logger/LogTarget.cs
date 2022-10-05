@@ -9,7 +9,7 @@ using Serverless.Api.Common.Constants;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 
-namespace Serverless.Api.Models.Models.Logger
+namespace Serverless.Api.Models.DataTranferObjects.Logger
 {
     /// <summary>
     /// The service logger target object.
@@ -30,7 +30,7 @@ namespace Serverless.Api.Models.Models.Logger
         /// <example>GET</example>
         [DisplayName(DisplayNames.Host)]
         [JsonPropertyName(DisplayNames.Host)]
-        public string? Host { get; set;  }
+        public string? Host { get; set; }
 
         /// <summary>
         /// Gets or sets the log target route.
